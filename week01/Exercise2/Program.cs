@@ -9,28 +9,29 @@ class Program
         string input = Console.ReadLine();
 
         int grade = int.Parse(input); // Store the grade percentage from input
-
+        string letter;
         // Conditions to determine the letter grade according to the grade percentage from input
         if (grade >= 90)
         {
-            Console.WriteLine("Letter grade: A");
+            letter = "A";
         }
         else if (grade >= 80)
         {
-            Console.WriteLine("Letter grade: B");
+            letter = "B";
         }
         else if (grade >= 70)
         {
-            Console.WriteLine("Letter grade: C");
+            letter = "C";
         }
         else if (grade >= 60)
         {
-            Console.WriteLine("Letter grade: D");
+            letter = "D";
         }
         else
         {
-            Console.WriteLine("Letter grade: F");
+            letter = "F"; ;
         }
+        Console.WriteLine($"Letter grade: {letter}");
 
         // Conditions to determine if student has passed or not, min grade it 70
         if (grade >= 70)
