@@ -9,7 +9,7 @@ class Program
         string input = Console.ReadLine();
 
         int grade = int.Parse(input); // Store the grade percentage from input
-        string letter;
+        string letter; // Store the letter grade from condition
         // Conditions to determine the letter grade according to the grade percentage from input
         if (grade >= 90)
         {
