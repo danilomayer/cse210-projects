@@ -8,7 +8,9 @@ class Program
         Console.WriteLine("What is your grade percentage?"); // Prompt the user to enter their grade
         string input = Console.ReadLine();
 
-        int grade = int.Parse(input);
+        int grade = int.Parse(input); // Store the grade percentage from input
+
+        // Conditions to determine the letter grade according to the grade percentage from input
         if (grade >= 90)
         {
             Console.WriteLine("Letter grade: A");
@@ -28,6 +30,16 @@ class Program
         else
         {
             Console.WriteLine("Letter grade: F");
+        }
+
+        // Conditions to determine if student has passed or not, min grade it 70
+        if (grade >= 70)
+        {
+            Console.WriteLine("Congratulations. You have passed!");
+        }
+        else
+        {
+            Console.WriteLine("You haven't passe. Don't give up, continue studying and you will make if next time!");
         }
     }
 }
