@@ -46,6 +46,6 @@ class Program
         }
 
         // Print the total sum
-        Console.WriteLine($"\nThe total sum of the numbers is: {sum}.")
+        Console.WriteLine($"\nThe total sum of the numbers is: {sum}.");
     }
 }
