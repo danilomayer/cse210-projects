@@ -33,9 +33,14 @@ class Program
 
         // Compute the sum of the numbers in the list
         int sum = 0;
+        int max = int.MinValue;
         foreach (int num in numbers)
         {
             sum += num;
+            if (num > max)
+            {
+                max = num; // Update the maximum if the current number is larger
+            }
         }
         // Compute the average of the numbers in the list.
         int avg = sum / numbers.Count;
@@ -48,8 +53,9 @@ class Program
             Console.WriteLine(num);
         }
 
-        // Print the total sum and the average of the numbers
+        // Print the total sum, the average of the numbers, and the largest number in the list
         Console.WriteLine($"\nThe total sum of the numbers is: {sum}.");
         Console.WriteLine($"\nThe average of the numbers is: {avg}.");
+        Console.WriteLine($"\nThe largest number is: {max}.");
     }
 }
