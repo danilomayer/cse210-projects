@@ -31,11 +31,21 @@ class Program
 
         } while (number != 0);
 
+        // Compute the sum of the numbers in the list
+        int sum = 0;
+        foreach (int num in numbers)
+        {
+            sum += num;
+        }
+
         // Print the numbers in the list
         Console.WriteLine("\nYou entered the following numbers:");
         foreach (int num in numbers)
         {
             Console.WriteLine(num);
         }
+
+        // Print the total sum
+        Console.WriteLine($"\nThe total sum of the numbers is: {sum}.")
     }
 }
