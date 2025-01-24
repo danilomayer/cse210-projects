@@ -37,6 +37,9 @@ class Program
         {
             sum += num;
         }
+        // Compute the average of the numbers in the list.
+        int avg = sum / numbers.Count;
+
 
         // Print the numbers in the list
         Console.WriteLine("\nYou entered the following numbers:");
@@ -45,7 +48,8 @@ class Program
             Console.WriteLine(num);
         }
 
-        // Print the total sum
+        // Print the total sum and the average of the numbers
         Console.WriteLine($"\nThe total sum of the numbers is: {sum}.");
+        Console.WriteLine($"\nThe average of the numbers is: {avg}.");
     }
 }
