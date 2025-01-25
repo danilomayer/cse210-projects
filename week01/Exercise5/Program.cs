@@ -23,8 +23,21 @@ class Program
 
         static int PromptUserNumber()
         {
-            Console.WriteLine("")
+            Console.WriteLine("What is your favorite integer number?"); // Prompt the user to enter their favorite INTEGER NUMBER
+            string input = Console.ReadLine(); // Store the user input in a variable
+            int fav_num;
+
+            // Validate and convert input to an integer 
+            while (!int.TryParse(input, out fav_num))
+            {
+                Console.WriteLine("Invalid input. Please enter a valid integer:");
+                input = Console.ReadLine(); // Retry input
+            }
+            fav_num = int.Parse(input);
+
+            return fav_num; // Returns the users number
         }
-        PromptUserNumber()
+        // Print to the user their favorite integer
+        Console.WriteLine($"Your favorite number is {PromptUserNumber()}.");
     }
 }
