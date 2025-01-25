@@ -20,8 +20,6 @@ class Program
             string name = Console.ReadLine(); //Store the user input in a variable
             return name; // Returns the users name
         }
-        string greeting = PromptUserName();
-        Console.WriteLine(greeting);
 
         // Favorite number function
         static int PromptUserNumber()
@@ -36,13 +34,10 @@ class Program
                 Console.WriteLine("Invalid input. Please enter a valid integer:");
                 input = Console.ReadLine(); // Retry input
             }
-            fav_num = int.Parse(input);
 
             return fav_num; // Returns the users number
         }
-        // Print to the user their favorite integer
-        int fav_num = PromptUserNumber();
-        Console.WriteLine($"Your favorite number is {fav_num}.");
+        //int fav_num = PromptUserNumber();
 
         // Squared number function
         static int SquareNumber(int number)
@@ -50,13 +45,17 @@ class Program
             number = number * number;
             return number;
         }
-        int number = fav_num;
-        Console.WriteLine($"Your favorite number squared is {SquareNumber(number)}.");
+
+        string greeting = PromptUserName();
+        int squared = SquareNumber(PromptUserNumber());
+
 
         // Display results function
         static string DisplayResult(string name, int square)
         {
-            Console.WriteLine($"{name}, the square of your number is ")
+            string display = $"{name}, the square of your number is {square}";
+            return display;
         }
+        Console.WriteLine(DisplayResult(greeting, squared));
     }
 }
