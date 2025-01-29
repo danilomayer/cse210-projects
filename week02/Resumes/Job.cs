@@ -3,7 +3,7 @@ public class Job
 {
     // Displays the job information in the format "Job Title (Company) StartYear-EndYear", for example: "Software Engineer (Microsoft) 2019-2022".
     public string Company { get; set; }
-    public string _jobTitle;
-    public int _startYear;
-    public int _endYear;
+    public string JobTitle { get; set; }
+    public int StartYear { get; set; }
+    public int EndYear { get; set; }
 }

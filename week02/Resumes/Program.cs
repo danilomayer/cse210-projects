@@ -6,9 +6,9 @@ class Program
     {
         Job job1 = new Job();
         job1.Company = "Google";
-        job1._jobTitle = "CEO";
-        job1._startYear = 2001;
-        job1._endYear = 2025;
+        job1.JobTitle = "CEO";
+        job1.StartYear = 2001;
+        job1.EndYear = 2025;
         Console.WriteLine(job1.Company);
 
         /* Resume my_resume = new Resume();
