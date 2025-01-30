@@ -22,11 +22,3 @@ class Program
         my_resume.Name = "Vincent"; */
     }
 }
-
-/* Keeps track of the person's name and a list of their jobs.
-public class Resume
-{
-Displays the resume, which shows the name first, followed by displaying each one of the jobs.
-
-string name;
-} */
