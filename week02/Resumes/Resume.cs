@@ -5,4 +5,14 @@ public class Resume
     public string Name { get; set; }
 
     public List<Job> Jobs { get; set; } = new List<Job>();
+
+    public void ResumeDisplay()
+    {
+        Console.WriteLine($"Resume of: {Name}");
+        foreach (Job job in Jobs)
+        {
+            Console.WriteLine($"- {job.JobTitle} at {job.Company}, from {job.StartYear} to {job.EndYear}.");
+        }
+
+    }
 }
