@@ -6,4 +6,12 @@ public class Job
     public string JobTitle { get; set; }
     public int StartYear { get; set; }
     public int EndYear { get; set; }
+
+    public void Display()
+    {
+        Console.WriteLine(Company);
+        Console.WriteLine(JobTitle);
+        Console.WriteLine(StartYear);
+        Console.WriteLine(EndYear);
+    }
 }
