@@ -16,13 +16,21 @@ class Program
         Entry();
     }
 
+    public void AddEntry()
+    {
+        Random rand = new Random(); // Creates a new random object
+        string prompt = prompts[rand.Next(prompts.Count)]; // Picks a random prompt
+        Console.WriteLine(prompt); // Displays the prompt
+        string response = Console.ReadLine(); // Gets user input
+        Entries.Add(new Entry(prompt, response)); // Stores the entry
+    }
+
     static void Entry()
     {
         // Display prompt 
         // Ask for entry
         // Store it with date in a list
         Console.WriteLine("");
-
 
         private List<string> prompts = new List<string>
         {
