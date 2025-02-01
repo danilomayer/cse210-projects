@@ -71,6 +71,38 @@ public class Journal
         }
         Console.WriteLine("Journal saved successfully.");
     }
+
+    public void LoadFromFile(string filename)
+    {
+        if (!File.Exists(filename))
+        {
+            Console.WriteLine("Error: File not found.");
+            return;
+        }
+
+        Entries.Clear();
+        string[] lines = File.ReadAllLines(filename);
+
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split('|');
+
+            if (parts.Length == 3)
+            {
+                string date = parts[0].Trim();
+                string prompt = parts[1].Trim();
+                string response = parts[2].Trim();
+
+                Entries.Add(new Entry(prompt, response) { Date = date });
+            }
+            else
+            {
+                Console.WriteLine($"Skipping invalid line: {line}");
+            }
+        }
+
+        Console.WriteLine("Journal successfully loaded.");
+    }
 }
 
 class Program
@@ -124,37 +156,7 @@ public void SaveToFile(string filename)
     Console.WriteLine("Journal saved successfully.");
 }
 
-public void LoadFromFile(string filename)
-{
-    if (!File.Exists(filename))
-    {
-        Console.WriteLine("Error: File not found.");
-        return;
-    }
 
-    Entries.Clear();
-    string[] lines = File.ReadAllLines(filename);
-
-    foreach (string line in lines)
-    {
-        string[] parts = line.Split('|');
-
-        if (parts.Length == 3)
-        {
-            string date = parts[0].Trim();
-            string prompt = parts[1].Trim();
-            string response = parts[2].Trim();
-
-            Entries.Add(new Entry(prompt, response) { Date = date });
-        }
-        else
-        {
-            Console.WriteLine($"Skipping invalid line: {line}");
-        }
-    }
-
-    Console.WriteLine("Journal successfully loaded.");
-}
 
 
 static void Entry()
