@@ -109,41 +109,57 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine(@"Please select one of the following choices:
-        1. Write
-        2. Display
-        3. Load
-        4. Save
-        5. Quit
-        What would you like to do? ");
-        switch (choice)
+        Journal journal = new Journal(); // Create an instance of the Journal class
+        while (true) // Main program loop
         {
-            case "1":
-            // Generate prompt, allow user to write and store entry
-            case "2":
-                if (journal.Entries.Count == 0)
-                {
-                    Console.WriteLine("No entries to display.");
-                }
-                else
-                {
-                    journal.DisplayEntries();
-                }
-                break;
+            Console.WriteLine(@"Please select one of the following choices:
+            1. Write
+            2. Display
+            3. Load
+            4. Save
+            5. Quit
+            What would you like to do? ");
 
-            case "4":
-                Console.Write("Enter filename: ");
-                string fileName = Console.ReadLine();
-                journal.LoadFromFile(fileName);
-                Console.WriteLine("Journal loaded successfully.");
-                break;
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    // Generate prompt, allow user to write and store entry
+                    journal.AddEntry();
+                    break;
+                case "2":
+                    if (journal.Entries.Count == 0)
+                    {
+                        Console.WriteLine("No entries to display.");
+                    }
+                    else
+                    {
+                        journal.DisplayEntries();
+                    }
+                    break;
+                case "3":
+                    Console.Write("Enter filename: ");
+                    string loadFileName = Console.ReadLine();
+                    journal.LoadFromFile(loadFileName);
+                    break;
+                case "4":
+                    Console.Write("Enter filename: ");
+                    string saveFileName = Console.ReadLine();
+                    journal.LoadFromFile(saveFileName);
+                    break;
+                case "5":
+                    return; //Exit the program
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+            // Prompt to type a number and call each function
+            Entry();
         }
-        // Prompt to type a number and call each function
-        Entry();
+
     }
-
 }
-
 public void SaveToFile(string filename)
 {
     using (StreamWriter writer = new StreamWriter(filename))
