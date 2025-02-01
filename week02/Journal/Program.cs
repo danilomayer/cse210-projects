@@ -112,6 +112,7 @@ class Program
         Journal journal = new Journal(); // Create an instance of the Journal class
         while (true) // Main program loop
         {
+            // Prompt to type a number and call each function
             Console.WriteLine(@"Please select one of the following choices:
             1. Write
             2. Display
@@ -124,11 +125,11 @@ class Program
 
             switch (choice)
             {
-                case "1":
+                case "1": // WRITE
                     // Generate prompt, allow user to write and store entry
                     journal.AddEntry();
                     break;
-                case "2":
+                case "2": // DISPLAY
                     if (journal.Entries.Count == 0)
                     {
                         Console.WriteLine("No entries to display.");
@@ -138,47 +139,22 @@ class Program
                         journal.DisplayEntries();
                     }
                     break;
-                case "3":
-                    Console.Write("Enter filename: ");
-                    string loadFileName = Console.ReadLine();
+                case "3": // LOAD
+                    Console.Write("Enter filename to LOAD: ");
+                    string loadFileName = Console.ReadLine(); // Store the filename
                     journal.LoadFromFile(loadFileName);
                     break;
-                case "4":
-                    Console.Write("Enter filename: ");
+                case "4": // SAVE
+                    Console.Write("Enter filename to SAVE: "); // Clarify for the user
                     string saveFileName = Console.ReadLine();
                     journal.LoadFromFile(saveFileName);
                     break;
-                case "5":
+                case "5": // QUIT
                     return; //Exit the program
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
                     break;
             }
-            // Prompt to type a number and call each function
-            Entry();
-        }
-
-    }
-}
-public void SaveToFile(string filename)
-{
-    using (StreamWriter writer = new StreamWriter(filename))
-    {
-        foreach (var entry in Entries)
-        {
-            writer.WriteLine($"{entry.Date}~|~{entry.Prompt}~|~{entry.Response}");
         }
     }
-    Console.WriteLine("Journal saved successfully.");
-}
-
-
-
-
-static void Entry()
-{
-    // Display prompt 
-    // Ask for entry
-    // Store it with date in a list
-
 }
