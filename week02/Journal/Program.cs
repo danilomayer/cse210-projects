@@ -62,7 +62,14 @@ public class Journal
 
     public void SaveToFile(string filename)
     {
-
+        using (StreamWriter writer = new StreamWriter(filename))
+        {
+            foreach (var entry in Entries)
+            {
+                writer.WriteLine($"{entry.Date}~|~{entry.Prompt}~|~{entry.Response}");
+            }
+        }
+        Console.WriteLine("Journal saved successfully.");
     }
 }
 
