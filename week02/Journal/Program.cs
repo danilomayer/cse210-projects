@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 public class Entry
 {
@@ -15,6 +18,51 @@ public class Entry
     public override string ToString()
     {
         return $"[{Date}] {Prompt}\nResponse: {Response}\n";
+    }
+}
+
+public class Journal
+{
+    public List<Entry> Entries { get; set; } = new List<Entry>();
+
+    private List<string> prompts = new List<string>
+    {
+        "What was the most memorable part of your day?",
+        "Did you face any challenges today? How did you handle them?",
+        "What is something new you learned today?",
+        "Describe a moment that made you smile today.",
+        "If you could relive one part of today, what would it be and why?",
+        "What is one thing you’re grateful for today?",
+        "What goal or task do you want to accomplish tomorrow?"
+    };
+
+    public void AddEntry()
+    {
+        Random rand = new Random(); // Creates a new random object
+        string prompt = prompts[rand.Next(prompts.Count)]; // Picks a random prompt
+        Console.WriteLine(prompt); // Displays the prompt
+        string response = Console.ReadLine(); // Gets user input
+        Entries.Add(new Entry(prompt, response)); // Stores the entry
+    }
+
+    public void DisplayEntries()
+    {
+        if (Entries.Count == 0)
+        {
+            Console.Write("No entries to display.");
+        }
+        else
+        {
+            foreach (var entry in Entries)
+            {
+                Console.WriteLine(entry);
+            }
+        }
+    }
+
+    public void SaveToFile(string filename)
+    {
+
     }
 }
 
@@ -55,14 +103,6 @@ class Program
         Entry();
     }
 
-}
-public void AddEntry()
-{
-    Random rand = new Random(); // Creates a new random object
-    string prompt = prompts[rand.Next(prompts.Count)]; // Picks a random prompt
-    Console.WriteLine(prompt); // Displays the prompt
-    string response = Console.ReadLine(); // Gets user input
-    Entries.Add(new Entry(prompt, response)); // Stores the entry
 }
 
 public void SaveToFile(string filename)
@@ -117,14 +157,3 @@ static void Entry()
     // Store it with date in a list
 
 }
-
-private List<string> prompts = new List<string>
-            {
-               "What was the most memorable part of your day?",
-                "Did you face any challenges today? How did you handle them?",
-              "What is something new you learned today?",
-                "Describe a moment that made you smile today.",
-                "If you could relive one part of today, what would it be and why?",
-                "What is one thing you’re grateful for today?",
-                "What goal or task do you want to accomplish tomorrow?"
-            };
