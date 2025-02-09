@@ -5,7 +5,31 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the ScriptureMemorizer Project.");
+        Reference reference = new Reference("Ezekiel", 25, 17);
+        Scripture scripture = new Scripture(reference, "The path of the righteous man is beset on all sides by the Inequities of the selfish and the tyranny of evil men Blessed is he who, in the name of charity and good will shepherds the weak through the valley of darkness for he is truly his brother's keeper and the finder of lost children And I will strike down upon thee with great vengeance and furious Anger those who attempt to poison and destroy my brothers And you will know My name is the Lord when I lay my vengeance upon thee");
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine(scripture);
+            Console.WriteLine("\nPress Enter to hide words or type 'quit' to exit.");
+
+            string input = Console.ReadLine();
+            if (input.ToLower() == "quit")
+            {
+                break;
+            }
+
+            scripture.HideRandomWords(3);
+
+            if (scripture.AllWordHidden())
+            {
+                Console.Clear();
+                Console.WriteLine(scripture);
+                Console.WriteLine("\nAll words are hidden. Program will now exit.");
+                break;
+            }
+        }
     }
 }
 
