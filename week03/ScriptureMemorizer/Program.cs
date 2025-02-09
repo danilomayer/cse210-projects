@@ -37,23 +37,34 @@ class Program
 class Scripture
 {
     // Attributes
-    private string _reference; // The reference of the scripture.
-    private string _words; // The text of the scripture.
+    private Reference _reference; // The reference of the scripture.
+    private List<Word> _words; // The text of the scripture.
 
     // Class Behaviors
+    public Scripture(Reference reference, string text)
+    {
+        _reference = reference;
+        _words = text.Split(' ').Select(word => new Word(word)).ToList();
+    }
     public void HideRandomWords(int number)
     {
-        return;
+        Random random = new Random();
+        for (int i = 0; i < number; i++)
+        {
+            int index = random.Next(_words.Count);
+            _words[index].Hide();
+        }
     }
 
-    public string GetDisplayText()
+    public bool AllWordsHidden()
     {
-        return "";
+        return _words.All(word => word.IsHidden);
     }
 
-    public bool IsCompletelyHidden()
+    public override string ToString()
     {
-        return false;
+        string scriptureText = string.Join(" ", _words);
+        return $"{_reference.GetDisplayText()}\n{scriptureText}";
     }
 }
 
@@ -61,28 +72,30 @@ class Scripture
 class Word
 {
     // Attributes
-    private string _text; // The text of the word.
-    private bool _hidden; // Whether the word is hidden.
+    public string Text { get; private set; }
+    public bool IsHidden { get; private set; }
 
-    // Class Behaviors
+    public Word(string text)
+    {
+        Text = text;
+        IsHidden = false;
+    }
+
     public void Hide()
     {
-        return;
+        IsHidden = true;
     }
 
-    public void Show()
+    public override string ToString()
     {
-        return;
-    }
-
-    public bool IsHidden()
-    {
-        return false;
-    }
-
-    public string GetDisplayText()
-    {
-        return "";
+        if (IsHidden)
+        {
+            return new string('_', Text.Length);
+        }
+        else
+        {
+            return Text;
+        }
     }
 }
 
