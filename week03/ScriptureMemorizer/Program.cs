@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 // People often try to memorize poems or passages of scripture. One of the challenges they encounter is that they want to hide the scripture while they are practicing, but they may not be able to recite the whole scripture from memory just yet.
 // Create a program that will allow the user to input a scripture passage. The program should then display the scripture one word at a time. The user should be able to press a key to reveal the next word in the scripture. The user should be able to press a key to hide the word and display the previous word.
 class Program
@@ -22,7 +25,7 @@ class Program
 
             scripture.HideRandomWords(3);
 
-            if (scripture.AllWordHidden())
+            if (scripture.AllWordsHidden())
             {
                 Console.Clear();
                 Console.WriteLine(scripture);
@@ -132,7 +135,7 @@ class Reference
         return _book;
     }
 
-    public int SetBook(string book)
+    public void SetBook(string book)
     {
         _book = book;
     }
@@ -154,7 +157,7 @@ class Reference
         return _verse;
     }
 
-    public void SerVerse(int verse)
+    public void SetVerse(int verse)
     {
         _verse = verse;
     }
