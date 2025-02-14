@@ -54,3 +54,29 @@ class Customer
         return "Customer: " + _name + "\n" + _address.GetFullAddress();
     }
 }
+
+class Product
+{
+    private string _name;
+    private string _productId;
+    private double _price;
+    private int _quality;
+
+    public Product(string name, string productId, double price, int quality)
+    {
+        _name = name;
+        _productId = productId;
+        _price = price;
+        _quality = quality;
+    }
+
+    public double GetTotalCost()
+    {
+        return _price * _quality;
+    }
+
+    public string GetProductDetail()
+    {
+        return _name + " (ID: " + _productId + ")";
+    }
+}
