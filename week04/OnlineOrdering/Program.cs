@@ -85,17 +85,14 @@ class Order
 {
     private List<Product> _products = new List<Product>();
     private Customer _customer;
-
     public Order(Customer customer)
     {
         _customer = customer;
     }
-
     public void AddProduct(Product product)
     {
         _products.Add(product);
     }
-
     public double GetTotalPrice()
     {
         double totalCost = 0;
@@ -106,7 +103,6 @@ class Order
         double shippingCost = _customer.IsInUSA() ? 5 : 35;
         return totalCost + shippingCost;
     }
-
     public string GetPackingLabel()
     {
         string label = "Packing Label:\n";
@@ -115,5 +111,9 @@ class Order
             label += product.GetProductDetail() + "\n";
         }
         return label;
+    }
+    public string GetShippingLabel()
+    {
+        return "Shipping Label:\n" + _customer.GetCustomerDetails();
     }
 }
