@@ -80,3 +80,40 @@ class Product
         return _name + " (ID: " + _productId + ")";
     }
 }
+
+class Order
+{
+    private List<Product> _products = new List<Product>();
+    private Customer _customer;
+
+    public Order(Customer customer)
+    {
+        _customer = customer;
+    }
+
+    public void AddProduct(Product product)
+    {
+        _products.Add(product);
+    }
+
+    public double GetTotalPrice()
+    {
+        double totalCost = 0;
+        foreach (var product in _products)
+        {
+            totalCost += product.GetTotalCost();
+        }
+        double shippingCost = _customer.IsInUSA() ? 5 : 35;
+        return totalCost + shippingCost;
+    }
+
+    public string GetPackingLabel()
+    {
+        string label = "Packing Label:\n";
+        foreach (var product in _products)
+        {
+            label += product.GetProductDetail() + "\n";
+        }
+        return label;
+    }
+}
