@@ -38,15 +38,19 @@ class Customer
     private string _name;
     private Address _address;
 
-    public Customer(string name, A
-    ddress address)
+    public Customer(string name, Address address)
     {
         _name = name;
         _address = address;
     }
 
-    public string GetName()
+    public bool IsInUSA()
     {
-        return _name;
+        return _address.IsInUSA();
+    }
+
+    public string GetCustomerDetails()
+    {
+        return "Customer: " + _name + "\n" + _address.GetFullAddress();
     }
 }
