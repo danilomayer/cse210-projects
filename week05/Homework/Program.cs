@@ -4,28 +4,16 @@ class Program
 {
     static void Main(string[] args)
     {
+        // Assignment object
+        Assignment assignment1 = new Assignment("John", "Math");
+        Console.WriteLine(assignment1.GetSummary());
 
-    }
-}
+        // MathAssignment object
+        MathAssignment mathAssignment1 = new MathAssignment("John", "Math", "Chapter 1", "1-10");
+        Console.WriteLine(mathAssignment1.GetHomeworkList());
 
-class MathAssignment : Assignment
-{
-    private string _textbookSection;
-    private string _problems;
-
-    public string GetHomeworkList()
-    {
-
-    }
-
-}
-
-class WritingAssignment : Assignment
-{
-    private string _title;
-
-    public string GetHomeworkList()
-    {
-
+        // WritingAssignment object
+        WritingAssignment writingAssignment1 = new WritingAssignment("Mary Waters", "European History", "The Causes of World War II by Mary Waters");
+        Console.WriteLine(writingAssignment1.GetWritingInformation());
     }
 }
