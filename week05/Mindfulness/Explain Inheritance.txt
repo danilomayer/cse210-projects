@@ -1,0 +1,3 @@
+Inheritance is a fundamental concept in object-oriented programming (OOP) that simplifies class design by eliminating redundancy and promoting code reuse. It allows one class to inherit attributes and behaviors from another, ensuring consistency while reducing duplication.
+
+A key characteristic of inherited classes is that they share a common foundation but exhibit distinct variations. For example, in a mindfulness application, you might have three different types of activities—such as breathing exercises, reflection prompts, and guided listening. Instead of rewriting shared functionality for each, they can all inherit common traits from a base Activity class while implementing their unique characteristics.
