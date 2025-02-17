@@ -25,6 +25,6 @@ class BreathingActivity : Activity
     private int GetDuration()
     {
         // Assuming duration is set in DisplayStartingMessage
-        return _duration;
+        return GetActivityDuration();
     }
 }
