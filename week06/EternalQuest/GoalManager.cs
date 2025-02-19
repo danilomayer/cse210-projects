@@ -6,10 +6,14 @@ class GoalManager
 {
     private List<Goal> _goals = new List<Goal>();
     private int _score;
+    private int _level;
+    private int _xp;
 
     public GoalManager()
     {
         _score = 0;
+        _level = 1;
+        _xp = 0;
     }
 
     // Getter for the goal list
@@ -29,6 +33,14 @@ class GoalManager
     {
         _score = score;
     }
+    public int GetLevel()
+    {
+        return _level;
+    }
+    public int GetXP()
+    {
+        return _xp;
+    }
 
     // Methods
     public void Start()
@@ -36,11 +48,15 @@ class GoalManager
         // Initialize goals and score
         _goals = new List<Goal>();
         _score = 0;
+        _level = 1;
+        _xp = 0;
     }
 
     public void DisplayPlayerInfo()
     {
         Console.WriteLine($"Score: {_score}");
+        Console.WriteLine($"Level: {_level}");
+        Console.WriteLine($"XP: {_xp}");
     }
 
     public void ListGoalNames()
@@ -65,6 +81,8 @@ class GoalManager
         Console.WriteLine("1. Simple Goal");
         Console.WriteLine("2. Eternal Goal");
         Console.WriteLine("3. Checklist Goal");
+        Console.WriteLine("4. Progress Goal");
+        Console.WriteLine("5. Negative Goal");
         string choice = Console.ReadLine();
 
         Console.Write("Enter short name: ");
@@ -89,6 +107,14 @@ class GoalManager
                 int bonus = int.Parse(Console.ReadLine());
                 _goals.Add(new ChecklistGoal(0, target, bonus, shortName, description, points));
                 break;
+            case "4":
+                Console.Write("Enter target progress: ");
+                int targetProgress = int.Parse(Console.ReadLine());
+                _goals.Add(new ProgressGoal(0, targetProgress, shortName, description, points));
+                break;
+            case "5":
+                _goals.Add(new NegativeGoal(shortName, description, points));
+                break;
             default:
                 Console.WriteLine("Invalid choice.");
                 break;
@@ -102,9 +128,23 @@ class GoalManager
             if (goal.GetShortName() == goalName)
             {
                 goal.RecordEvent();
-                _score += int.Parse(goal.GetPoints());
+                int points = int.Parse(goal.GetPoints());
+                _score += points;
+                _xp += points;
+                CheckLevelUp();
                 break;
             }
+        }
+    }
+
+    private void CheckLevelUp()
+    {
+        int xpForNextLevel = _level * 100;
+        if (_xp >= xpForNextLevel)
+        {
+            _level++;
+            _xp -= xpForNextLevel;
+            Console.WriteLine($"Congratulations! You've leveled up to Level {_level}!");
         }
     }
 
@@ -115,6 +155,8 @@ class GoalManager
             using (StreamWriter writer = new StreamWriter("goals.txt"))
             {
                 writer.WriteLine(_score);
+                writer.WriteLine(_level);
+                writer.WriteLine(_xp);
                 foreach (var goal in _goals)
                 {
                     writer.WriteLine(goal.GetStringRepresentation());
@@ -137,6 +179,8 @@ class GoalManager
                 using (StreamReader reader = new StreamReader("goals.txt"))
                 {
                     _score = int.Parse(reader.ReadLine());
+                    _level = int.Parse(reader.ReadLine());
+                    _xp = int.Parse(reader.ReadLine());
                     _goals = new List<Goal>();
                     string line;
                     while ((line = reader.ReadLine()) != null)
@@ -161,6 +205,14 @@ class GoalManager
                                 int target = int.Parse(parts[5]);
                                 int bonus = int.Parse(parts[6]);
                                 _goals.Add(new ChecklistGoal(amountCompleted, target, bonus, shortName, description, points));
+                                break;
+                            case "ProgressGoal":
+                                int currentProgress = int.Parse(parts[4]);
+                                int targetProgress = int.Parse(parts[5]);
+                                _goals.Add(new ProgressGoal(currentProgress, targetProgress, shortName, description, points));
+                                break;
+                            case "NegativeGoal":
+                                _goals.Add(new NegativeGoal(shortName, description, points));
                                 break;
                         }
                     }
