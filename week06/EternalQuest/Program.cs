@@ -27,7 +27,7 @@ class Program
                 switch (choice)
                 {
                     case "1":
-                        goalManager.DisplayPlayerInfo(); // Corrected method name
+                        goalManager.DisplayPlayerInfo();
                         break;
                     case "2":
                         goalManager.ListGoalNames();
@@ -68,3 +68,8 @@ class Program
         }
     }
 }
+
+// Additional features implemented:
+// - Leveling system with XP and levels
+// - New goal types: ProgressGoal and NegativeGoal
+// - Enhanced user interface with player level and XP display
