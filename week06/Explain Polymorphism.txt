@@ -1,0 +1,50 @@
+Polymorphism is a core concept in object-oriented programming that allows objects of different classes to be treated as objects of a common superclass. It enables a single function or method to work in different ways based on the object it is acting upon.
+
+Polymorphic Behavior: The function animalSound takes an Animal object and calls its makeSound method. Due to polymorphism, the correct method (either from Dog or Cat) is called based on the actual object passed to the function.
+Here's the code again for reference:
+
+using System;
+
+class Animal
+{
+    public virtual string MakeSound()
+    {
+        return "";
+    }
+}
+
+class Dog : Animal
+{
+    public override string MakeSound()
+    {
+        return "Woof";
+    }
+}
+
+class Cat : Animal
+{
+    public override string MakeSound()
+    {
+        return "Meow";
+    }
+}
+
+// Example usage
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dog dog = new Dog();
+        Cat cat = new Cat();
+
+        AnimalSound(dog);  // Output: Woof
+        AnimalSound(cat);  // Output: Meow
+    }
+
+    static void AnimalSound(Animal animal)
+    {
+        Console.WriteLine(animal.MakeSound());
+    }
+}
+
+In summary, polymorphism allows the animalSound function to handle different types of Animal objects (like Dog and Cat) and call the appropriate makeSound method for each type.
