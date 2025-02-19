@@ -41,6 +41,7 @@ class ChecklistGoal : Goal
         _bonus = bonus;
     }
 
+    // Methods
     public override void RecordEvent()
     { }
 

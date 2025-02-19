@@ -19,15 +19,19 @@ class SimpleGoal : Goal
         _isComplete = isComplete;
     }
 
-    // Constructors
+    // Methods
     public override void RecordEvent()
-    { }
+    {
+        _isComplete = true;
+    }
+
     public override bool IsComplete()
     {
-        return false;
+        return _isComplete;
     }
+
     public override string GetStringRepresentation()
     {
-        return "";
+        return $"{GetShortName()} - {GetDescription()} - {GetPoints()} points - Complete: {_isComplete}";
     }
 }

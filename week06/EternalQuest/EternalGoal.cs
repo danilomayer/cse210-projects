@@ -5,7 +5,7 @@ class EternalGoal : Goal
     public EternalGoal(string shortName, string description, string points) : base(shortName, description, points)
     { }
 
-    //
+    // Methods
     public override void RecordEvent()
     { }
 

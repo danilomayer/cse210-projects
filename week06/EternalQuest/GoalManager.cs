@@ -29,7 +29,7 @@ class GoalManager
         _score = score;
     }
 
-    // Constructors
+    // Methods
     public void Start()
     { }
     public void DisplayPLayerInfo()
