@@ -22,36 +22,45 @@ class Program
             Console.Write("Choose an option: ");
             string choice = Console.ReadLine();
 
-            switch (choice)
+            try
             {
-                case "1":
-                    goalManager.DisplayPlayerInfo();
-                    break;
-                case "2":
-                    goalManager.ListGoalNames();
-                    break;
-                case "3":
-                    goalManager.ListGoalDetails();
-                    break;
-                case "4":
-                    goalManager.CreateGoal();
-                    break;
-                case "5":
-                    Console.Write("Enter goal name to record event: ");
-                    string goalName = Console.ReadLine();
-                    goalManager.RecordEvent(goalName);
-                    break;
-                case "6":
-                    goalManager.SaveGoals();
-                    break;
-                case "7":
-                    goalManager.LoadGoals();
-                    break;
-                case "8":
-                    return;
-                default:
-                    Console.WriteLine("Invalid choice. Please try again.");
-                    break;
+                switch (choice)
+                {
+                    case "1":
+                        goalManager.DisplayPlayerInfo();
+                        break;
+                    case "2":
+                        goalManager.ListGoalNames();
+                        break;
+                    case "3":
+                        goalManager.ListGoalDetails();
+                        break;
+                    case "4":
+                        goalManager.CreateGoal();
+                        break;
+                    case "5":
+                        Console.Write("Enter goal name to record event: ");
+                        string goalName = Console.ReadLine();
+                        goalManager.RecordEvent(goalName);
+                        break;
+                    case "6":
+                        goalManager.SaveGoals();
+                        Console.WriteLine("Goals saved successfully.");
+                        break;
+                    case "7":
+                        goalManager.LoadGoals();
+                        Console.WriteLine("Goals loaded successfully.");
+                        break;
+                    case "8":
+                        return;
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
             }
 
             Console.WriteLine("Press Enter to continue...");
