@@ -5,6 +5,7 @@ class Program
     static void Main(string[] args)
     {
         GoalManager goalManager = new GoalManager();
+        goalManager.Start();
 
         while (true)
         {
@@ -33,8 +34,7 @@ class Program
                     goalManager.ListGoalDetails();
                     break;
                 case "4":
-                    // Example of creating a SimpleGoal
-                    goalManager.CreateGoal(new SimpleGoal(false, "Read Book", "Read a book for 30 minutes", "10"));
+                    goalManager.CreateGoal();
                     break;
                 case "5":
                     Console.Write("Enter goal name to record event: ");
