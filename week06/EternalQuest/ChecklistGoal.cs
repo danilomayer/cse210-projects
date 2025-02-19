@@ -43,15 +43,17 @@ class ChecklistGoal : Goal
 
     // Methods
     public override void RecordEvent()
-    { }
+    {
+        _amountCompleted++;
+    }
 
     public override bool IsComplete()
     {
-        return false;
+        return _amountCompleted >= _target;
     }
 
     public override string GetStringRepresentation()
     {
-        return "";
+        return $"ChecklistGoal|{GetShortName()}|{GetDescription()}|{GetPoints()}|{_amountCompleted}|{_target}|{_bonus}";
     }
 }
