@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 class GoalManager
 {
@@ -109,11 +110,53 @@ class GoalManager
 
     public void SaveGoals()
     {
-        // Implement saving goals to a file
+        // Implement Saving goals to a file
+        using (StreamWriter writer = new StreamWriter("goals.txt"))
+        {
+            writer.WriteLine(_score);
+            foreach (var goal in _goals)
+            {
+                writer.WriteLine(goal.GetStringRepresentation());
+            }
+        }
     }
 
     public void LoadGoals()
     {
-        // Implement loading goals from a file
+        // Implement Loading goals from a file
+        if (File.Exists("goals.txt"))
+        {
+            using (StreamReader reader = new StreamReader("goals.txt"))
+            {
+                _score = int.Parse(reader.ReadLine());
+                _goals = new List<Goal>();
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] parts = line.Split('|');
+                    string type = parts[0];
+                    string shortName = parts[1];
+                    string description = parts[2];
+                    string points = parts[3];
+
+                    switch (type)
+                    {
+                        case "SimpleGoal":
+                            bool isComplete = bool.Parse(parts[4]);
+                            _goals.Add(new SimpleGoal(isComplete, shortName, description, points));
+                            break;
+                        case "EternalGoal":
+                            _goals.Add(new EternalGoal(shortName, description, points));
+                            break;
+                        case "ChecklistGoal":
+                            int amountCompleted = int.Parse(parts[4]);
+                            int target = int.Parse(parts[5]);
+                            int bonus = int.Parse(parts[6]);
+                            _goals.Add(new ChecklistGoal(amountCompleted, target, bonus, shortName, description, points));
+                            break;
+                    }
+                }
+            }
+        }
     }
 }
