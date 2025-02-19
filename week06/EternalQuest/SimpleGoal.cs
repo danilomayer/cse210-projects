@@ -20,13 +20,13 @@ class SimpleGoal : Goal
     }
 
     // Constructors
-    public void RecordEvent()
+    public override void RecordEvent()
     { }
-    public bool IsComplete()
+    public override bool IsComplete()
     {
         return false;
     }
-    public string GetStringRepresentation()
+    public override string GetStringRepresentation()
     {
         return "";
     }

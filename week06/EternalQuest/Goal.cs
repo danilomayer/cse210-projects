@@ -42,10 +42,10 @@ class Goal
     }
 
     // Methods
-    public void RecordEvent()
+    public virtual void RecordEvent()
     { }
 
-    public bool IsComplete()
+    public virtual bool IsComplete()
     {
         return false;
     }
@@ -55,7 +55,7 @@ class Goal
         return "";
     }
 
-    public string GetStringRepresentation()
+    public virtual string GetStringRepresentation()
     {
         return "";
     }
