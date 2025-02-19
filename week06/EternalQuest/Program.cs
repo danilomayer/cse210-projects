@@ -27,7 +27,7 @@ class Program
                 switch (choice)
                 {
                     case "1":
-                        goalManager.DisplayPlayerInfo();
+                        goalManager.DisplayPlayerInfo(); // Corrected method name
                         break;
                     case "2":
                         goalManager.ListGoalNames();

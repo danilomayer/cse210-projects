@@ -110,53 +110,71 @@ class GoalManager
 
     public void SaveGoals()
     {
-        // Implement Saving goals to a file
-        using (StreamWriter writer = new StreamWriter("goals.txt"))
+        try
         {
-            writer.WriteLine(_score);
-            foreach (var goal in _goals)
+            using (StreamWriter writer = new StreamWriter("goals.txt"))
             {
-                writer.WriteLine(goal.GetStringRepresentation());
+                writer.WriteLine(_score);
+                foreach (var goal in _goals)
+                {
+                    writer.WriteLine(goal.GetStringRepresentation());
+                }
             }
+            Console.WriteLine("Goals saved successfully.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred while saving goals: {ex.Message}");
         }
     }
 
     public void LoadGoals()
     {
-        // Implement Loading goals from a file
-        if (File.Exists("goals.txt"))
+        try
         {
-            using (StreamReader reader = new StreamReader("goals.txt"))
+            if (File.Exists("goals.txt"))
             {
-                _score = int.Parse(reader.ReadLine());
-                _goals = new List<Goal>();
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                using (StreamReader reader = new StreamReader("goals.txt"))
                 {
-                    string[] parts = line.Split('|');
-                    string type = parts[0];
-                    string shortName = parts[1];
-                    string description = parts[2];
-                    string points = parts[3];
-
-                    switch (type)
+                    _score = int.Parse(reader.ReadLine());
+                    _goals = new List<Goal>();
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
                     {
-                        case "SimpleGoal":
-                            bool isComplete = bool.Parse(parts[4]);
-                            _goals.Add(new SimpleGoal(isComplete, shortName, description, points));
-                            break;
-                        case "EternalGoal":
-                            _goals.Add(new EternalGoal(shortName, description, points));
-                            break;
-                        case "ChecklistGoal":
-                            int amountCompleted = int.Parse(parts[4]);
-                            int target = int.Parse(parts[5]);
-                            int bonus = int.Parse(parts[6]);
-                            _goals.Add(new ChecklistGoal(amountCompleted, target, bonus, shortName, description, points));
-                            break;
+                        string[] parts = line.Split('|');
+                        string type = parts[0];
+                        string shortName = parts[1];
+                        string description = parts[2];
+                        string points = parts[3];
+
+                        switch (type)
+                        {
+                            case "SimpleGoal":
+                                bool isComplete = bool.Parse(parts[4]);
+                                _goals.Add(new SimpleGoal(isComplete, shortName, description, points));
+                                break;
+                            case "EternalGoal":
+                                _goals.Add(new EternalGoal(shortName, description, points));
+                                break;
+                            case "ChecklistGoal":
+                                int amountCompleted = int.Parse(parts[4]);
+                                int target = int.Parse(parts[5]);
+                                int bonus = int.Parse(parts[6]);
+                                _goals.Add(new ChecklistGoal(amountCompleted, target, bonus, shortName, description, points));
+                                break;
+                        }
                     }
                 }
+                Console.WriteLine("Goals loaded successfully.");
             }
+            else
+            {
+                Console.WriteLine("No saved goals found.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred while loading goals: {ex.Message}");
         }
     }
 }
