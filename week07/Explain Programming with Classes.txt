@@ -1,0 +1,122 @@
+1. ABSTRACTION
+    Abstraction is a technique that is used to simplify code and make the development process cleaner and smoother. You use abstraction when you transform some structure that would take many lines maybe even hundreds of lines of code and simplify it with only a few lines. Creating a clean code is essential to development and every professional should apply this practice.
+
+    Classes are a form of abstraction, where you create a block of code to perform a specific task that can be called with a single command. That single command may perform the entire operation inside the class, causing it to be a simplification of an abstraction of that class.
+
+Example:
+// Keeps track of the company, job title, start year, and end year.
+public class Job
+{
+    // Properties to store job details
+    public string Company { get; set; }
+    public string JobTitle { get; set; }
+    public int StartYear { get; set; }
+    public int EndYear { get; set; }
+
+    // Method to display job information
+    public void Display()
+    {
+        Console.WriteLine($"{JobTitle} ({Company}) {StartYear}-{EndYear}");
+    }
+}
+
+The Company, JobTitle, StartYear, and EndYear properties abstract the details of a job. Users can set and get these properties without knowing how they are stored internally. Helped me understand how abstraction can help me simplify and organize my code better
+
+2. ENCAPSULATION
+    It is the principle of OOP that combines data and methods that make the program work in a single class. Also restricting access of some components by making them private which makes them only available inside the class and protected which allows to access the data inside the class and with derived classes. 
+
+Example:
+class Scripture
+{
+    // Attributes
+    private Reference _reference; // The reference of the scripture.
+    private List<Word> _words; // The text of the scripture.
+
+    // Constructor
+    public Scripture(Reference reference, string text)
+    {
+        _reference = reference;
+        _words = text.Split(' ').Select(word => new Word(word)).ToList();
+    }
+
+    // Method to hide random words
+    public void HideRandomWords(int number)
+    {
+        Random random = new Random();
+        for (int i = 0; i < number; i++)
+        {
+            int index = random.Next(_words.Count);
+            _words[index].Hide();
+        }
+    }
+
+    // Method to check if all words are hidden
+    public bool AllWordsHidden()
+    {
+        return _words.All(word => word.IsHidden);
+    }
+
+    // Method to display the scripture
+    public override string ToString()
+    {
+        string scriptureText = string.Join(" ", _words);
+        return $"{_reference.GetDisplayText()}\n{scriptureText}";
+    }
+}
+
+The class encapsulates the scripture text and reference, and provides methods to hide words and display the scripture.
+
+3. INHERITANCE
+    Inheritance is a fundamental concept in object-oriented programming (OOP) that simplifies class design by eliminating redundancy and promoting code reuse. It allows one class to inherit attributes and behaviors from another, ensuring consistency while reducing duplication.
+
+    A key characteristic of inherited classes is that they share a common foundation but exhibit distinct variations. For example, in a mindfulness application, you might have three different types of activities—such as breathing exercises, reflection prompts, and guided listening. Instead of rewriting shared functionality for each, they can all inherit common traits from a base Activity class while implementing their unique characteristics.
+
+Example:
+class WritingAssignment : Assignment
+{
+    private string _title;
+
+    public WritingAssignment(string studentName, string topic, string title) : base(studentName, topic)
+    {
+        _title = title;
+    }
+
+    public string GetWritingInformation()
+    {
+        return $"{_title}";
+    }
+}
+
+Inheritance allows the WritingAssignment class to reuse and extend the functionality of the Assignment class. The Assignment class is the base class that contains common attributes and methods for assignments. The WritingAssignment class inherits from the Assignment class, meaning it can use the properties and methods defined in the Assignment class.
+
+4. POLYMORPHISM
+    Polymorphism is a core concept in object-oriented programming that allows objects of different classes to be treated as objects of a common superclass. It enables one function or method to work in different ways based on the object it is acting upon.
+
+Example:
+class Circle : Shape
+{
+    private double _radius;
+
+    public Circle(double radius, string color) : base(color)
+    {
+        _radius = radius;
+    }
+
+    // Getters and Setters
+    public double GetRadius()
+    {
+        return _radius;
+    }
+    public void SetRadius(double radius)
+    {
+        _radius = radius;
+    }
+
+    public override double GetArea()
+    {
+        return 3.14 * (_radius * _radius);
+    }
+}
+
+In the provided code, an example of polymorphism is the Circle class overriding the GetArea method from the Shape class. Polymorphism allows the Circle class to provide a specific implementation of the GetArea method that is different from the base class Shape.
+The Shape class defines a virtual method GetArea that can be overridden by derived classes. The Circle class inherits from the Shape class and provides its own implementation of the GetArea method using the override keyword.
