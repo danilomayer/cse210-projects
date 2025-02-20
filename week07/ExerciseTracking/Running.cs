@@ -2,7 +2,6 @@ using System;
 
 class Running : Activity
 {
-    private int _running;
     private double _distance;
 
     public Running(DateTime date, int minutes, double distance) : base(date, minutes)
